@@ -33,11 +33,6 @@
     "test:all": "npm-run-all validate benchmark test:unit test:integration",
     "validate": "node ./test/benchmark/validate.js"
   },
-  "prepush": {
-    "tasks": [
-      "npm run test:all"
-    ]
-  },
   "devDependencies": {
     "Sentimental": "1.0.1",
     "async": "^2.6.0",
