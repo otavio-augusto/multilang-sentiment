@@ -1,6 +1,6 @@
 {
-  "author": "Andrew Sliwinski <andrewsliwinski@acm.org>",
-  "name": "sentiment",
+  "author": "Marcello Barile <marcello.barile@gmail.com>",
+  "name": "multilang-sentiment",
   "description": "AFINN-based sentiment analysis for Node.js",
   "version": "4.2.0",
   "license": "MIT",
