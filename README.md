@@ -13,12 +13,12 @@ Sentiment is a Node.js module that uses the [AFINN-165](http://www2.imm.dtu.dk/p
 
 ### Installation
 ```bash
-npm install sentiment
+npm install multilang-sentiment
 ```
 
 ### Usage
 ```javascript
-var sentiment = require('sentiment');
+var sentiment = require('multilang-sentiment');
 
 var r1 = sentiment('Cats are stupid.');
 console.dir(r1);        // Score: -2, Comparative: -0.666
