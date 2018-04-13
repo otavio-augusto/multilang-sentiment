@@ -26,7 +26,7 @@
     "lint": "eslint ./lib/*.js ./build/*.js ./test/**/*.js",
     "prepublishOnly": "npm run test:all",
     "pretest": "npm run lint",
-    "test":  "tap ./test/{unit,integration}/*.js",
+    "test": "tap ./test/{unit,integration}/*.js",
     "test:unit": "tap ./test/unit/*.js",
     "test:integration": "tap ./test/integration/*.js",
     "test:all": "npm-run-all validate benchmark test:unit test:integration",
