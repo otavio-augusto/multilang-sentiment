@@ -29,7 +29,7 @@ console.dir(r2);        // Score: 4, Comparative: 1
 ### Adding / overwriting words
 You can append and/or overwrite values from AFINN by simply injecting key/value pairs into a sentiment method call:
 ```javascript
-var sentiment = require('sentiment');
+var sentiment = require('multilang-sentiment');
 
 var result = sentiment('Cats are totally amazing!', {
     'cats': 5,
@@ -99,7 +99,7 @@ Tokenization works by splitting the lines of input string, then removing the spe
 ---
 
 ### Benchmarks
-A primary motivation for designing `sentiment` was performance. As such, it includes a benchmark script within the test directory that compares it against the [Sentimental](https://github.com/thinkroth/Sentimental) module which provides a nearly equivalent interface and approach. Based on these benchmarks, running on a MacBook Pro with Node v6.9.1, `sentiment` is **twice as fast** as alternative implementations:
+A primary motivation for designing `sentiment`, the forked module, was performance. As such, it includes a benchmark script within the test directory that compares it against the [Sentimental](https://github.com/thinkroth/Sentimental) module which provides a nearly equivalent interface and approach. Based on these benchmarks, running on a MacBook Pro with Node v6.9.1, `sentiment` is **twice as fast** as alternative implementations:
 
 ```bash
 sentiment (Latest) x 448,788 ops/sec ±1.02% (88 runs sampled)
