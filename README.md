@@ -1,5 +1,5 @@
-## sentiment
-#### AFINN-based sentiment analysis for Node.js
+## multilang-sentiment
+#### Multi language AFINN-based sentiment analysis for Node.js
 
 [![Build Status](https://travis-ci.org/thisandagain/sentiment.svg?branch=develop)](https://travis-ci.org/thisandagain/sentiment)
 [![Coverage Status](https://coveralls.io/repos/thisandagain/sentiment/badge.svg?branch=develop&service=github)](https://coveralls.io/github/thisandagain/sentiment?branch=develop)
