@@ -1,8 +1,8 @@
 {
   "author": "Marcello Barile <marcello.barile@gmail.com>",
   "name": "multilang-sentiment",
-  "description": "AFINN-based sentiment analysis for Node.js",
-  "version": "4.2.0",
+  "description": "Multi language AFINN-based sentiment analysis for Node.js",
+  "version": "1.0.0",
   "license": "MIT",
   "homepage": "https://github.com/marcellobarile/multilang-sentiment",
   "repository": {
