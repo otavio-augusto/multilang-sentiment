@@ -8,7 +8,7 @@ sentiment(dataset, function (err, result) {
         t.equal(result.score, 1);
         t.equal(result.comparative, 0.25);
         t.equal(result.tokens.length, 4);
-        t.equal(result.words.length, 1);
+        t.equal(result.words.length, 3);
         t.end();
     });
 });

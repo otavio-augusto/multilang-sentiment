@@ -9,6 +9,6 @@ test('synchronous inject', function (t) {
     t.equal(result.score, 100);
     t.equal(result.comparative, 25);
     t.equal(result.tokens.length, 4);
-    t.equal(result.words.length, 1);
+    t.equal(result.words.length, 3);
     t.end();
 });

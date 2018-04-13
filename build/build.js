@@ -3,8 +3,10 @@ var fs = require('fs');
 var path = require('path');
 
 // File paths
-var AFINN_PATH = path.resolve(__dirname, 'AFINN-en-165.txt');
-var EMOJI_PATH = path.resolve(__dirname, 'Emoji_Sentiment_Data_v1.0.csv');
+var AFINN_PATH = path.resolve(__dirname, 'languages');
+var EMOJI_PATH = path.resolve(__dirname, 
+    'emojis/Emoji_Sentiment_Data_v1.0.csv'
+);
 var RESULT_PATH = path.resolve(__dirname, 'build.json');
 
 /**
@@ -56,26 +58,15 @@ function processEmoji(hash, callback) {
  * @return {void}
  */
 function processAFINN(hash, callback) {
-    // Read file
-    fs.readFile(AFINN_PATH, 'utf8', function (err, data) {
-        if (err) return callback(err);
-
-        // Split data by new line
-        data = data.split(/\n/);
-
-        // Iterate over dataset and add to hash
-        for (var i in data) {
-            var line = data[i].split(/\t/);
-
-            // Validate line
-            if (line[0] === '') continue;
-
-            // Add to hash
-            hash[line[0]] = Number(line[1]);
+    fs.readdirSync(AFINN_PATH).forEach(function(file) {
+        var jsonContent = JSON.parse(
+            fs.readFileSync(AFINN_PATH + '/' + file, 'utf8')
+        );
+        for(var i in jsonContent) {
+            hash[i] = jsonContent[i];
         }
-
-        callback(null, hash);
     });
+    callback(null, hash);
 }
 
 /**

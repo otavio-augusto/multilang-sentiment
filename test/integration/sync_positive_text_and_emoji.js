@@ -9,6 +9,6 @@ test('synchronous positive with emoji', function (t) {
     t.equal(result.score, 3);
     t.equal(result.comparative, 0.6);
     t.equal(result.tokens.length, 5);
-    t.equal(result.words.length, 2);
+    t.equal(result.words.length, 4);
     t.end();
 });
