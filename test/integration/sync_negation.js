@@ -2,7 +2,7 @@ var test = require('tap').test;
 var sentiment = require('../../lib/index');
 
 var dataset = 'I don\'t hate you';
-var result = sentiment(dataset);
+var result = sentiment(dataset, 'en');
 
 test('synchronous negation', function (t) {
     t.type(result, 'object');

@@ -7,7 +7,7 @@ var AFINN_PATH = path.resolve(__dirname, 'languages');
 var EMOJI_PATH = path.resolve(__dirname, 
     'emojis/Emoji_Sentiment_Data_v1.0.csv'
 );
-var RESULT_PATH = path.resolve(__dirname, 'build.json');
+var RESULT_PATH = path.resolve(__dirname, 'output/build-{lang}.json');
 
 /**
  * Read emoji data from original format (CSV).
@@ -44,7 +44,10 @@ function processEmoji(hash, callback) {
             if (sentiment === 0) continue;
 
             // Add to hash
-            hash[emoji] = sentiment;
+            hash[emoji] = {
+                coeff: sentiment,
+                lang: '*'
+            };
         }
 
         callback(null, hash);
@@ -58,14 +61,40 @@ function processEmoji(hash, callback) {
  * @return {void}
  */
 function processAFINN(hash, callback) {
+    var initialHash = Object.assign({}, hash);
+
     fs.readdirSync(AFINN_PATH).forEach(function(file) {
+        var filePath = AFINN_PATH + '/' + file;
+        var lang = file.match(/AFINN-(.*)\.json/);
+        var langHash = Object.assign({}, initialHash);
+
+        if (fs.lstatSync(filePath).isDirectory()) return;
+
         var jsonContent = JSON.parse(
-            fs.readFileSync(AFINN_PATH + '/' + file, 'utf8')
+            fs.readFileSync(filePath, 'utf8')
         );
+
         for(var i in jsonContent) {
-            hash[i] = jsonContent[i];
+            if (i.length > 1) {
+                var index = i.toLowerCase();
+                var obj = {
+                    coeff: jsonContent[i],
+                    lang: lang[1]
+                };
+                langHash[index] = obj;
+                hash[index] = obj;
+            }
         }
+
+        fs.writeFile(
+            RESULT_PATH.replace('{lang}', lang[1]),
+            JSON.stringify(langHash, null, 4),
+            function (err) {
+                if (err) return callback(err);
+            }
+        );
     });
+
     callback(null, hash);
 }
 
@@ -77,10 +106,14 @@ function processAFINN(hash, callback) {
  */
 function finish(hash, callback) {
     var result = JSON.stringify(hash, null, 4);
-    fs.writeFile(RESULT_PATH, result, function (err) {
-        if (err) return callback(err);
-        callback(null, hash);
-    });
+    fs.writeFile(
+        RESULT_PATH.replace('{lang}', 'all'),
+        JSON.stringify(hash, null, 4),
+        function (err) {
+            if (err) return callback(err);
+            callback(null, hash);
+        }
+    );
 }
 
 // Execute build process

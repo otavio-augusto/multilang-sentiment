@@ -2,7 +2,7 @@ var test = require('tap').test;
 var sentiment = require('../../lib/index');
 
 var dataset = 'self-deluded';
-var result = sentiment(dataset);
+var result = sentiment(dataset, 'en');
 
 test('synchronous positive', function (t) {
     t.type(result, 'object');

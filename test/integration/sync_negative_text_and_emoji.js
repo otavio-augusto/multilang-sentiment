@@ -3,8 +3,8 @@ var sentiment = require('../../lib/index');
 
 var datasetEn = 'Hey you worthless scumbag 😦';
 var datasetIt = 'Hey brutta testa di cazzo 😦';
-var resultEn = sentiment(datasetEn);
-var resultIt = sentiment(datasetIt);
+var resultEn = sentiment(datasetEn, 'en');
+var resultIt = sentiment(datasetIt, 'it');
 
 test('[EN] synchronous negative with emoji', function (t) {
     t.type(resultEn, 'object');
@@ -17,8 +17,8 @@ test('[EN] synchronous negative with emoji', function (t) {
 
 test('[IT] synchronous negative with emoji', function (t) {
     t.type(resultIt, 'object');
-    t.equal(resultIt.score, -3);
-    t.equal(resultIt.comparative, -0.5);
+    t.equal(resultIt.score, -11);
+    t.equal(resultIt.comparative, -1.83);
     t.equal(resultIt.tokens.length, 6);
     t.equal(resultIt.words.length, 4);
     t.end();

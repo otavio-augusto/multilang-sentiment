@@ -1,11 +1,13 @@
 var test = require('tap').test;
 var sentiment = require('../../lib/index');
 
-var datasetEn = 'This is not cool';
-var datasetIt = 'Questo non è bello';
+var datasetEnNeg = 'This is not cool';
+var datasetItNeg = 'Questo non è bello';
+var datasetEnPos = 'This is cool';
+var datasetItPos = 'Questo è bello';
 
-sentiment(datasetEn, function (err, result) {
-    test('[EN] asynchronous negators', function (t) {
+sentiment(datasetEnNeg, 'en', function (err, result) {
+    test('[EN][NEG] asynchronous negators', function (t) {
         t.type(result, 'object');
         t.equal(result.score, -1);
         t.equal(result.comparative, -0.25);
@@ -15,13 +17,35 @@ sentiment(datasetEn, function (err, result) {
     });
 });
 
-sentiment(datasetIt, function (err, result) {
-    test('[IT] asynchronous negators', function (t) {
+sentiment(datasetItNeg, 'it', function (err, result) {
+    test('[IT][NEG] asynchronous negators', function (t) {
+        t.type(result, 'object');
+        t.equal(result.score, -3);
+        t.equal(result.comparative, -1);
+        t.equal(result.tokens.length, 3);
+        t.equal(result.words.length, 1);
+        t.end();
+    });
+});
+
+sentiment(datasetEnPos, 'en', function (err, result) {
+    test('[EN][POS] asynchronous negators', function (t) {
         t.type(result, 'object');
         t.equal(result.score, 1);
-        t.equal(result.comparative, 0.25);
-        t.equal(result.tokens.length, 4);
-        t.equal(result.words.length, 2);
+        t.equal(result.comparative, 0.33);
+        t.equal(result.tokens.length, 3);
+        t.equal(result.words.length, 1);
+        t.end();
+    });
+});
+
+sentiment(datasetItPos, 'it', function (err, result) {
+    test('[IT][POS] asynchronous negators', function (t) {
+        t.type(result, 'object');
+        t.equal(result.score, 3);
+        t.equal(result.comparative, 1);
+        t.equal(result.tokens.length, 3);
+        t.equal(result.words.length, 1);
         t.end();
     });
 });
