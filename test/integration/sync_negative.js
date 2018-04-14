@@ -2,9 +2,9 @@ var test = require('tap').test;
 var sentiment = require('../../lib/index');
 
 var datasetEn = 'Hey you worthless scumbag';
-var resultEn = sentiment(datasetEn);
+var resultEn = sentiment(datasetEn, 'en');
 var datasetRu = 'мудак!';
-var resultRu = sentiment(datasetRu);
+var resultRu = sentiment(datasetRu, 'ru');
 
 test('[EN] synchronous negative', function (t) {
     t.type(resultEn, 'object');
