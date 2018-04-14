@@ -2,7 +2,7 @@
 #### Multi language AFINN-based sentiment analysis for Node.js
 
 [![Build Status](https://travis-ci.org/marcellobarile/multilang-sentiment.svg?branch=develop)](https://travis-ci.org/marcellobarile/multilang-sentiment)
-[![Coverage Status](https://coveralls.io/repos/github/marcellobarile/multilang-sentiment/badge.svg?branch=develop)](https://coveralls.io/github/marcellobarile/multilang-sentiment?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/marcellobarile/multilang-sentiment/badge.svg?branch=master)](https://coveralls.io/github/marcellobarile/multilang-sentiment?branch=master)
 
 Multilang Sentiment (fork of [Sentiment](https://github.com/thisandagain/sentiment)) is a Node.js module that uses the [AFINN-165](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) wordlists translated in multiple languages and [Emoji Sentiment Ranking](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296) to perform [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) on arbitrary blocks of input text. Sentiment provides several things:
 
