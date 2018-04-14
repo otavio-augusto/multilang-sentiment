@@ -19,10 +19,10 @@ npm install multilang-sentiment
 ```javascript
 var sentiment = require('multilang-sentiment');
 
-var r1 = sentiment('Cats are stupid.');
+var r1 = sentiment('Cats are stupid.', 'en');
 console.dir(r1);        // Score: -2, Comparative: -0.666
 
-var r2 = sentiment('Cats are totally amazing!');
+var r2 = sentiment('Cats are totally amazing!'); // "en" by default
 console.dir(r2);        // Score: 4, Comparative: 1
 ```
 
@@ -31,7 +31,7 @@ You can append and/or overwrite values from AFINN by simply injecting key/value 
 ```javascript
 var sentiment = require('multilang-sentiment');
 
-var result = sentiment('Cats are totally amazing!', {
+var result = sentiment('Cats are totally amazing!', 'en', {
     'cats': 5,
     'amazing': 2  
 });
