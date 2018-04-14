@@ -1,7 +1,8 @@
 var test = require('tap').test;
 var sentiment = require('../../lib/index');
 
-var datasetIt = 'ok eventualmente anche io potrei fare un paio di panini se pensi che tre siano pochi per entrambi';
+var datasetIt = 'ok eventualmente anche io potrei fare un paio ' +
+'di panini se pensi che tre siano pochi per entrambi';
 
 sentiment(datasetIt, 'it', function (err, result) {
     test('[IT] asynchronous negators', function (t) {

@@ -105,7 +105,6 @@ function processAFINN(hash, callback) {
  * @return {void}
  */
 function finish(hash, callback) {
-    var result = JSON.stringify(hash, null, 4);
     fs.writeFile(
         RESULT_PATH.replace('{lang}', 'all'),
         JSON.stringify(hash, null, 4),
