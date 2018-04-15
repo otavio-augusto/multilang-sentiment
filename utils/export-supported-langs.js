@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
-var AFINN_PATH = path.resolve(__dirname, 'languages');
+var AFINN_PATH = path.resolve(__dirname, '../build/languages');
 
 var langs = [];
 fs.readdirSync(AFINN_PATH).forEach(function(file) {
