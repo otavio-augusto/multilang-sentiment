@@ -32,10 +32,26 @@ You can append and/or overwrite values from AFINN by simply injecting key/value 
 var sentiment = require('multilang-sentiment');
 
 var result = sentiment('Cats are totally amazing!', 'en', {
-    'cats': 5,
-    'amazing': 2  
+    'words': {
+        'cats': 5,
+        'amazing': 2
+    }
 });
 console.dir(result);    // Score: 7, Comparative: 1.75
+```
+
+### Passing custom tokens
+There are languages that might require specific tokenizators, such as chinese or arabic.
+In such a case you can pass your own tokens.
+
+```javascript
+var sentiment = require('multilang-sentiment');
+
+var tokens = ['世界','就','是','一个','疯子','的','囚笼'];
+var result = sentiment('世界就是一个疯子的囚笼', 'zh', {
+    'tokens': tokens
+});
+console.dir(result);    // Score: -3, Comparative: -0.43
 ```
 
 ---
