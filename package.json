@@ -2,7 +2,7 @@
   "author": "Marcello Barile <marcello.barile@gmail.com>",
   "name": "multilang-sentiment",
   "description": "Multi language AFINN-based sentiment analysis for Node.js",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "license": "MIT",
   "homepage": "https://github.com/marcellobarile/multilang-sentiment",
   "repository": {
@@ -24,6 +24,7 @@
     "build": "node ./build/build.js",
     "coverage": "tap ./test/{integration,unit}/*.js --coverage --coverage-report=lcov",
     "lint": "eslint ./lib/*.js ./build/*.js ./test/**/*.js",
+    "lint:fix": "eslint --fix ./lib/*.js ./build/*.js ./test/**/*.js",
     "prepublishOnly": "npm run test:all",
     "pretest": "npm run lint",
     "test": "tap ./test/{unit,integration}/*.js",
