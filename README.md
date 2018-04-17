@@ -2,7 +2,7 @@
 #### Multi language AFINN-based sentiment analysis for Node.js
 
 [![Build Status](https://travis-ci.org/marcellobarile/multilang-sentiment.svg?branch=develop)](https://travis-ci.org/marcellobarile/multilang-sentiment)
-[![Coverage Status](https://coveralls.io/repos/github/marcellobarile/multilang-sentiment/badge.svg?branch=master)](https://coveralls.io/github/marcellobarile/multilang-sentiment?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/marcellobarile/multilang-sentiment/badge.svg?branch=develop)](https://coveralls.io/github/marcellobarile/multilang-sentiment?branch=develop)
 
 Multilang Sentiment (fork of [Sentiment](https://github.com/thisandagain/sentiment)) is a Node.js module that uses the [AFINN-165](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) wordlists translated in multiple languages and [Emoji Sentiment Ranking](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296) to perform [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) on arbitrary blocks of input text. Sentiment provides several things:
 
@@ -67,17 +67,15 @@ That string results in the following:
 {
     score: 1,
     comparative: 0.1111111111111111,
-    tokens: [
-        'i',
-        'love',
-        'cats',
-        'but',
-        'i',
-        'am',
-        'allergic',
-        'to',
-        'them'
-    ],
+    tokens: [ { value: 'i', negate: false },
+     { value: 'love', negate: false },
+     { value: 'cats', negate: false },
+     { value: 'but', negate: false },
+     { value: 'i', negate: false },
+     { value: 'am', negate: false },
+     { value: 'allergic', negate: false },
+     { value: 'to', negate: false },
+     { value: 'them', negate: false } ],
     words: [
         'allergic',
         'love'
@@ -92,7 +90,11 @@ That string results in the following:
 ```
 
 #### Supported languages
-"af","am","ar","az","be","bg","bn","bs","ca","ceb","co","cs","cy","da","de","el","en","eo","es","et","eu","fa","fi","fr","fy","ga","gd","gl","gu","ha","haw","hi","hmn","hr","ht","hu","hy","id","ig","is","it","iw","ja","jw","ka","kk","km","kn","ko","ku","ky","la","lb","lo","lt","lv","mg","mi","mk","ml","mn","mr","ms","mt","my","ne","nl","no","ny","pa","pl","ps","pt","ro","ru","sd","si","sk","sl","sm","sn","so","sq","sr","st","su","sv","sw","ta","te","tg","th","tl","tr","uk","ur","uz","vi","xh","yi","yo","zh-tw","zh","zu"
+"af","am","ar","az","be","bg","bn","bs","ca","ceb","co","cs","cy","da","de","el","en","eo","es","et","eu","fa","fi",
+"fr","fy","ga","gd","gl","gu","ha","haw","hi","hmn","hr","ht","hu","hy","id","ig","is","it","iw","ja","jw","ka","kk",
+"km","kn","ko","ku","ky","la","lb","lo","lt","lv","mg","mi","mk","ml","mn","mr","ms","mt","my","ne","nl","no","ny",
+"pa","pl","ps","pt","ro","ru","sd","si","sk","sl","sm","sn","so","sq","sr","st","su","sv","sw","ta","te","tg","th",
+"tl","tr","uk","ur","uz","vi","xh","yi","yo","zh-tw","zh","zu"
 
 * Returned Objects
     * __Score__: Score calculated by adding the sentiment values of recongnized words.
