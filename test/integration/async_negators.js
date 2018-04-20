@@ -6,6 +6,7 @@ var datasetItNeg = 'Questo non è bello';
 var datasetEnPos = 'This is cool';
 var datasetItPos = 'Questo è bello';
 var dataSetItFarNeg = 'Questo non credo sia bello';
+var dataSetItFarAltNeg = 'Non mi sento molto bene';
 
 sentiment(datasetEnNeg, 'en', function (err, result) {
     test('[EN][NEG] asynchronous negators', function (t) {
@@ -31,6 +32,18 @@ sentiment(datasetItNeg, 'it', function (err, result) {
 
 sentiment(dataSetItFarNeg, 'it', function (err, result) {
     test('[IT][FAR NEG] asynchronous negators', function (t) {
+        t.type(result, 'object');
+        t.equal(result.score, -3);
+        t.equal(result.comparative, -0.6);
+        t.equal(result.tokens.length, 5);
+        t.equal(result.words.length, 1);
+        t.end();
+    });
+});
+
+sentiment(dataSetItFarAltNeg, 'it', function (err, result) {
+    test('[IT][FAR ALT NEG] asynchronous negators', function (t) {
+        console.log(result);
         t.type(result, 'object');
         t.equal(result.score, -3);
         t.equal(result.comparative, -0.6);
