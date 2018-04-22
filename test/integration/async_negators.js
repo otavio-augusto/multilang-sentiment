@@ -43,7 +43,6 @@ sentiment(dataSetItFarNeg, 'it', function (err, result) {
 
 sentiment(dataSetItFarAltNeg, 'it', function (err, result) {
     test('[IT][FAR ALT NEG] asynchronous negators', function (t) {
-        console.log(result);
         t.type(result, 'object');
         t.equal(result.score, -3);
         t.equal(result.comparative, -0.6);
