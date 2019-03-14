@@ -4,9 +4,7 @@ var path = require('path');
 
 // File paths
 var AFINN_PATH = path.resolve(__dirname, 'languages');
-var EMOJI_PATH = path.resolve(__dirname, 
-    'emojis/Emoji_Sentiment_Data_v1.0.csv'
-);
+var EMOJI_PATH = path.resolve(__dirname, 'emojis/Emoji_Sentiment_Data_v1.0.csv');
 var RESULT_PATH = path.resolve(__dirname, 'output/build-{lang}.json');
 
 /**
@@ -64,11 +62,17 @@ function processAFINN(hash, callback) {
     var initialHash = Object.assign({}, hash);
 
     fs.readdirSync(AFINN_PATH).forEach(function(file) {
+        if (file.indexOf('AFINN') < 0) {
+            return;
+        }
+
         var filePath = AFINN_PATH + '/' + file;
         var lang = file.match(/AFINN-(.*)\.json/);
         var langHash = Object.assign({}, initialHash);
 
-        if (fs.lstatSync(filePath).isDirectory()) return;
+        if (fs.lstatSync(filePath).isDirectory()) {
+            return;
+        }
 
         var jsonContent = JSON.parse(
             fs.readFileSync(filePath, 'utf8')
@@ -86,9 +90,13 @@ function processAFINN(hash, callback) {
             }
         }
 
+        var langHashStr = JSON
+            .stringify(langHash)
+            .replace(/\s(?=([^"]*"[^"]*")*[^"]*$)/, '');
+
         fs.writeFile(
             RESULT_PATH.replace('{lang}', lang[1]),
-            JSON.stringify(langHash, null, 4),
+            langHashStr,
             function (err) {
                 if (err) return callback(err);
             }
@@ -98,31 +106,13 @@ function processAFINN(hash, callback) {
     callback(null, hash);
 }
 
-/**
- * Write sentiment score hash to disk.
- * @param  {object}   hash     Result hash
- * @param  {Function} callback Callback
- * @return {void}
- */
-function finish(hash, callback) {
-    fs.writeFile(
-        RESULT_PATH.replace('{lang}', 'all'),
-        JSON.stringify(hash, null, 4),
-        function (err) {
-            if (err) return callback(err);
-            callback(null, hash);
-        }
-    );
-}
-
 // Execute build process
 async.waterfall([
     function (cb) {
         cb(null, {});
     },
     processEmoji,
-    processAFINN,
-    finish
+    processAFINN
 ], function(err, result) {
     if (err) throw new Error(err);
     process.stderr.write(

@@ -2,12 +2,12 @@
 #### Multi language AFINN-based sentiment analysis for Node.js
 
 [![Build Status](https://travis-ci.org/marcellobarile/multilang-sentiment.svg?branch=develop)](https://travis-ci.org/marcellobarile/multilang-sentiment)
-[![Coverage Status](https://coveralls.io/repos/github/marcellobarile/multilang-sentiment/badge.svg?branch=master)](https://coveralls.io/github/marcellobarile/multilang-sentiment?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/marcellobarile/multilang-sentiment/badge.svg?branch=develop)](https://coveralls.io/github/marcellobarile/multilang-sentiment?branch=develop)
 
-Multilang Sentiment (fork of [Sentiment](https://github.com/thisandagain/sentiment)) is a Node.js module that uses the [AFINN-165](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) wordlists translated in multiple languages and [Emoji Sentiment Ranking](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296) to perform [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) on arbitrary blocks of input text. Sentiment provides several things:
+Multilang Sentiment (fork of [Sentiment](https://github.com/thisandagain/sentiment)) is a Node.js module that uses the [AFINN-165](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) wordlists translated in multiple languages and [Emoji Sentiment Ranking](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296) to perform [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) on arbitrary blocks of input text. Multilang Sentiment provides several things:
 
 - Performance (see benchmarks below)
-- The ability to append and overwrite word / value pairs from the AFINN wordlist
+- The ability to append and overwrite word / value pairs from the AFINN wordlist or to use custom tokens
 - A build process that makes updating sentiment to future wordlists trivial
 
 ### Installation
@@ -32,10 +32,26 @@ You can append and/or overwrite values from AFINN by simply injecting key/value 
 var sentiment = require('multilang-sentiment');
 
 var result = sentiment('Cats are totally amazing!', 'en', {
-    'cats': 5,
-    'amazing': 2  
+    'words': {
+        'cats': 5,
+        'amazing': 2
+    }
 });
 console.dir(result);    // Score: 7, Comparative: 1.75
+```
+
+### Passing custom tokens
+There are languages that might require specific tokenizators, such as chinese or arabic.
+In such a case you can pass your own tokens.
+
+```javascript
+var sentiment = require('multilang-sentiment');
+
+var tokens = ['世界','就','是','一个','疯子','的','囚笼'];
+var result = sentiment('世界就是一个疯子的囚笼', 'zh', {
+    'tokens': tokens
+});
+console.dir(result);    // Score: -3, Comparative: -0.43
 ```
 
 ---
@@ -51,17 +67,15 @@ That string results in the following:
 {
     score: 1,
     comparative: 0.1111111111111111,
-    tokens: [
-        'i',
-        'love',
-        'cats',
-        'but',
-        'i',
-        'am',
-        'allergic',
-        'to',
-        'them'
-    ],
+    tokens: [ { value: 'i', negate: false },
+     { value: 'love', negate: false },
+     { value: 'cats', negate: false },
+     { value: 'but', negate: false },
+     { value: 'i', negate: false },
+     { value: 'am', negate: false },
+     { value: 'allergic', negate: false },
+     { value: 'to', negate: false },
+     { value: 'them', negate: false } ],
     words: [
         'allergic',
         'love'
@@ -76,7 +90,11 @@ That string results in the following:
 ```
 
 #### Supported languages
-"af","am","ar","az","be","bg","bn","bs","ca","ceb","co","cs","cy","da","de","el","en","eo","es","et","eu","fa","fi","fr","fy","ga","gd","gl","gu","ha","haw","hi","hmn","hr","ht","hu","hy","id","ig","is","it","iw","ja","jw","ka","kk","km","kn","ko","ku","ky","la","lb","lo","lt","lv","mg","mi","mk","ml","mn","mr","ms","mt","my","ne","nl","no","ny","pa","pl","ps","pt","ro","ru","sd","si","sk","sl","sm","sn","so","sq","sr","st","su","sv","sw","ta","te","tg","th","tl","tr","uk","ur","uz","vi","xh","yi","yo","zh-tw","zh","zu"
+"af","am","ar","az","be","bg","bn","bs","ca","ceb","co","cs","cy","da","de","el","en","eo","es","et","eu","fa","fi",
+"fr","fy","ga","gd","gl","gu","ha","haw","hi","hmn","hr","ht","hu","hy","id","ig","is","it","iw","ja","jw","ka","kk",
+"km","kn","ko","ku","ky","la","lb","lo","lt","lv","mg","mi","mk","ml","mn","mr","ms","mt","my","ne","nl","no","ny",
+"pa","pl","ps","pt","ro","ru","sd","si","sk","sl","sm","sn","so","sq","sr","st","su","sv","sw","ta","te","tg","th",
+"tl","tr","uk","ur","uz","vi","xh","yi","yo","zh-tw","zh","zu"
 
 * Returned Objects
     * __Score__: Score calculated by adding the sentiment values of recongnized words.
