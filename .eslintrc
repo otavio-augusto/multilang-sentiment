@@ -1,16 +1,20 @@
 {
-    "rules": {
-        "curly": [2, "multi-line"],
-        "eol-last": [2],
-        "indent": [2, 4],
-        "quotes": [2, "single"],
-        "linebreak-style": [2, "unix"],
-        "max-len": [2, 120, 4],
-        "semi": [2, "always"],
-        "strict": [2, "never"]
-    },
-    "env": {
-        "node": true
-    },
-    "extends": "eslint:recommended"
+  "rules": {
+    "curly": [2, "multi-line"],
+    "eol-last": [2],
+    "indent": [2, 2],
+    "quotes": [2, "single"],
+    "max-len": [2, 120, 4],
+    "semi": [2, "always"],
+    "strict": [2, "never"],
+    "no-console": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": "eslint:recommended"
 }

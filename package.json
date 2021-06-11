@@ -2,7 +2,7 @@
   "author": "Marcello Barile <marcello.barile@gmail.com>",
   "name": "multilang-sentiment",
   "description": "Multi language AFINN-based sentiment analysis for Node.js",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "license": "MIT",
   "homepage": "https://github.com/marcellobarile/multilang-sentiment",
   "repository": {
@@ -22,29 +22,28 @@
   "scripts": {
     "benchmark": "node ./test/benchmark/performance.js",
     "build": "node ./build/build.js",
-    "coverage": "tap ./test/{integration,unit}/*.js --coverage --coverage-report=lcov",
-    "lint": "eslint ./lib/*.js ./build/*.js ./test/**/*.js",
-    "lint:fix": "eslint --fix ./lib/*.js ./build/*.js ./test/**/*.js",
+    "coverage": "npx tap ./test/{integration,unit}/*.js --coverage --coverage-report=lcov",
+    "lint": "npx eslint ./lib/*.js ./build/*.js ./test/**/*.js",
+    "lint:fix": "npx eslint --fix ./lib/*.js ./build/*.js ./test/**/*.js",
     "prepublishOnly": "npm run test:all",
     "pretest": "npm run lint",
-    "test": "tap ./test/{unit,integration}/*.js",
-    "test:unit": "tap ./test/unit/*.js",
-    "test:integration": "tap ./test/integration/*.js",
-    "test:all": "npm-run-all validate benchmark test:unit test:integration",
+    "test": "npx tap ./test/{unit,integration}/*.js",
+    "test:unit": "npx tap ./test/unit/*.js",
+    "test:integration": "npx tap ./test/integration/*.js",
+    "test:all": "npx npm-run-all validate benchmark test:unit test:integration",
     "validate": "node ./test/benchmark/validate.js"
   },
   "devDependencies": {
     "Sentimental": "1.0.1",
-    "async": "^2.6.2",
+    "async": "^3.2.0",
     "benchmark": "^2.1.4",
-    "eslint": "^5.15.1",
-    "npm-run-all": "^4.1.5",
-    "tap": "^12.6.0"
+    "tap": "^15.0.9"
+  },
+  "dependencies": {
+    "fuse.js": "^6.4.6",
+    "wink-tokenizer": "^5.2.3"
   },
   "engines": {
     "node": ">=4.0"
-  },
-  "dependencies": {
-    "fuse.js": "^3.4.4"
   }
 }

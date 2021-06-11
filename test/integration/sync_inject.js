@@ -3,16 +3,16 @@ var sentiment = require('../../lib/index');
 
 var dataset = 'This is so cool';
 var result = sentiment(dataset, 'en', {
-    words: {
-        cool: 100
-    }
+  words: {
+    cool: 100,
+  },
 });
 
 test('synchronous inject', function (t) {
-    t.type(result, 'object');
-    t.equal(result.score, 100);
-    t.equal(result.comparative, 25);
-    t.equal(result.tokens.length, 4);
-    t.equal(result.words.length, 1);
-    t.end();
+  t.type(result, 'object');
+  t.equal(result.score, 100);
+  t.equal(result.comparative, 125);
+  t.equal(result.tokens.length, 4);
+  t.equal(result.words.length, 1);
+  t.end();
 });

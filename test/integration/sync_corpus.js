@@ -6,9 +6,9 @@ var dataset = corpus;
 var result = sentiment(dataset, 'en');
 
 test('synchronous corpus', function (t) {
-    t.type(result, 'object');
-    t.equal(result.score, -4);
-    t.equal(result.tokens.length, 1428);
-    t.equal(result.words.length, 74);
-    t.end();
+  t.type(result, 'object');
+  t.equal(result.score, -9);
+  t.equal(result.tokens.length, 1468);
+  t.equal(result.words.length, 1460);
+  t.end();
 });

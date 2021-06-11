@@ -5,6 +5,6 @@ var sentiment = require('../../lib/index');
 var dataset = fuzz(1000, 'en');
 
 test('synchronous fuzz', function (t) {
-    t.type(sentiment(dataset), 'object');
-    t.end();
+  t.type(sentiment(dataset), 'object');
+  t.end();
 });
